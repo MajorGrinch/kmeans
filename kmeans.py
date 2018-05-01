@@ -91,7 +91,8 @@ if __name__ == "__main__":
     closest.map(lambda (cluster, ((lat, lng), n)):
                 "{0} {1} {2}".format(lat, lng, cluster))\
         .saveAsTextFile("file:///home/cloudera/clusters_"
-                        + sys.argv[1].split("/")[-1][0:-4] + "_" + distFunc)
+                        + sys.argv[1].split("/")[-1][0:-4]
+                        + "_{0}_{1}".format(distFunc, k))
     sc.stop()
     print "Final K poitns: "
     for p in kPoints:
