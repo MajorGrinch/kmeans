@@ -55,9 +55,6 @@ if __name__ == "__main__":
                 bestIndex = i
         return bestIndex
 
-    def println(x):
-        print x
-
     filename = "file://" + sys.argv[1]
     convergeDist = 0.1
     k = int(sys.argv[2])
@@ -91,8 +88,11 @@ if __name__ == "__main__":
         for i in range(k):
             kPoints[i] = newKPoints[i]
 
+    closest.map(lambda (cluster, ((lat, lng), n)):
+                "{0} {1} {2}".format(lat, lng, cluster))\
+        .saveAsTextFile("file:///home/cloudera/clusters_"
+                        + sys.argv[1].split("/")[-1][0:-4] + "_" + distFunc)
     sc.stop()
     print "Final K poitns: "
     for p in kPoints:
         print p
-
